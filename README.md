@@ -1,19 +1,18 @@
 # Attendize-TeamProject
 
 ## Overview
-Attendize is an open-source ticket selling and event management platform. Below are the steps to get started with Attendize and configure it for your development or production environment.
+Attendize-TeamProject is an open-source ticket selling and event management platform. Below are the steps to get started with Attendize and configure it for your development or production environment.
 
 <p align="center">
   <img src="/public/assets/images/logo-dark.png" alt="Attendize"/>
   <img style='border: 1px solid #444;' src="https://www.attendize.com/images/screenshots/screen1.PNG" alt="Attendize"/>
 </p>
 
-
 ## Table of Contents
 - [Getting Started](#getting-started)
   - [Minimum Requirements](#minimum-requirements)
   - [Manual Installation Steps](#manual-installation-steps)
-  - [Running Attendize in Docker for Development](#running-attendize-in-docker-for-development)
+  - [Running Attendize-TeamProject in Docker for Development](#running-attendize-teamproject-in-docker-for-development)
   - [Which Version of Attendize Should I Use?](#which-version-of-attendize-do-i-use)
 - [Licensing](#licensing)
 - [Payment Gateways](#payment-gateways)
@@ -23,7 +22,7 @@ Attendize is an open-source ticket selling and event management platform. Below 
 
 ## Getting Started
 
-These instructions will help you get started quickly with Attendize.
+These instructions will help you get started quickly with Attendize-TeamProject.
 
 ### Minimum Requirements
 Attendize runs on most LAMP or LEMP environments as long as certain requirements are met. It is based on the Laravel framework.
@@ -49,8 +48,8 @@ You can use the stable master branch for the latest updates.
 ### Manual Installation Steps
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Attendize/Attendize
-   cd Attendize
+   git clone https://github.com/rodrichie/Attendize-TeamProject.git
+   cd Attendize-TeamProject
    git checkout master
    ```
 
@@ -95,13 +94,13 @@ You can use the stable master branch for the latest updates.
 
    If the page shows an error, check the logs in `./storage/logs` and ensure proper permissions are set.
 
-### Running Attendize in Docker for Development
+### Running Attendize-TeamProject in Docker for Development
 **Note**: Docker must be installed on your machine.
 
 1. **Clone the project:**
    ```bash
-   git clone https://github.com/Attendize/Attendize
-   cd Attendize
+   git clone https://github.com/rodrichie/Attendize-TeamProject.git
+   cd Attendize-TeamProject
    git checkout master
    ```
 
@@ -118,9 +117,9 @@ You can use the stable master branch for the latest updates.
    docker-compose run php php artisan attendize:install
    ```
 
-Attendize should now be running at [https://localhost:8081](https://localhost:8081), with maildev available at [http://localhost:1080](http://localhost:1080) for email testing.
+Attendize-TeamProject should now be running at [https://localhost:8081](https://localhost:8081), with maildev available at [http://localhost:1080](http://localhost:1080) for email testing.
 
-### Which Version of Attendize Do I Use?
+### Which Version of Attendize Should I Use?
 Choose the version based on your payment provider. Attendize uses the Omnipay framework for payment processing. The Laravel 5.2 branch supports Omnipay v2, while version 1.1+ supports Omnipay v3.
 
 Check the list of [supported payment gateways](https://github.com/thephpleague/omnipay#payment-gateways) to decide which version of Attendize to use:
@@ -128,7 +127,7 @@ Check the list of [supported payment gateways](https://github.com/thephpleague/o
 - Omnipay v3: Use the most current version of Attendize.
 
 ## Licensing
-Attendize is open-source and follows an open license. Please see the [LICENSE](LICENSE) file for details.
+Attendize-TeamProject is open-source and follows an open license. Please see the [LICENSE](LICENSE) file for details.
 
 ## Payment Gateways
 Attendize supports various payment gateways through Omnipay, including:
@@ -139,13 +138,10 @@ Attendize supports various payment gateways through Omnipay, including:
 Check [Omnipay's payment gateways](https://github.com/thephpleague/omnipay#payment-gateways) for more details.
 
 ## Release Notes
-See the [release notes](https://github.com/Attendize/Attendize/releases) for detailed information on new features and bug fixes.
+See the [release notes](https://github.com/rodrichie/Attendize-TeamProject/releases) for detailed information on new features and bug fixes.
 
 ## Troubleshooting
 Visit the [troubleshooting guide](https://attendize.com/docs/troubleshooting.html) for tips and solutions to common issues.
 
 ## Contributing
-If you wish to contribute to Attendize, please see our [Contributing Guide](CONTRIBUTING.md) for more information.
-```
-
-You can copy and paste this markdown into your README file. Let me know if you need any further modifications!
+If you wish to contribute to Attendize-TeamProject, please see our [Contributing Guide](CONTRIBUTING.md) for more information.
