@@ -13,6 +13,7 @@ Attendize-TeamProject is an open-source ticket selling and event management plat
   - [Minimum Requirements](#minimum-requirements)
   - [Manual Installation Steps](#manual-installation-steps)
   - [Running Attendize-TeamProject in Docker for Development](#running-attendize-teamproject-in-docker-for-development)
+  - [Branch Renaming](#branch-renaming)
   - [Which Version of Attendize Should I Use?](#which-version-of-attendize-do-i-use)
 - [Licensing](#licensing)
 - [Payment Gateways](#payment-gateways)
@@ -31,10 +32,10 @@ Attendize runs on most LAMP or LEMP environments as long as certain requirements
 - Version 2.0+ requires PHP 7.1.3 or higher.
 - Older Laravel 5.2 branch works with PHP 5.6 to PHP 7.1.
 
-You can use the stable master branch for the latest updates.
+You can use the stable main branch for the latest updates.
 
 #### PHP Requirements:
-- PHP >= 7.1.3 (for the master branch)
+- PHP >= 7.1.3 (for the main branch)
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
@@ -50,7 +51,7 @@ You can use the stable master branch for the latest updates.
    ```bash
    git clone https://github.com/rodrichie/Attendize-TeamProject.git
    cd Attendize-TeamProject
-   git checkout master
+   git checkout main
    ```
 
 2. **Copy environment file:**
@@ -101,7 +102,7 @@ You can use the stable master branch for the latest updates.
    ```bash
    git clone https://github.com/rodrichie/Attendize-TeamProject.git
    cd Attendize-TeamProject
-   git checkout master
+   git checkout main
    ```
 
 2. **Build Docker images and run containers:**
@@ -118,6 +119,20 @@ You can use the stable master branch for the latest updates.
    ```
 
 Attendize-TeamProject should now be running at [https://localhost:8081](https://localhost:8081), with maildev available at [http://localhost:1080](http://localhost:1080) for email testing.
+
+### Branch Renaming
+
+The default branch has been renamed!  
+`develop` is now named `main`.
+
+If you have a local clone, you can update it by running the following commands:
+
+```bash
+git branch -m develop main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
 
 ### Which Version of Attendize Should I Use?
 Choose the version based on your payment provider. Attendize uses the Omnipay framework for payment processing. The Laravel 5.2 branch supports Omnipay v2, while version 1.1+ supports Omnipay v3.
