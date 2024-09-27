@@ -5,42 +5,90 @@ on:
     types: [assigned, edited, opened, synchronize, reopened]
   push:
     branches:
-      - next
-      - master
+      - main
+      - Rodrick
+      - Laura
+      - Lynn
+      - Stephen
       - v2*
 
 jobs:
-  laravel-build-and-test:
+  laravel-build-and-test-ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Dependencies
-      uses: php-actions/composer@v4
+    - uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
       with:
-        command: install
-        args: --no-ansi --prefer-dist
-        php_version: 7.4
-        composer_version: 2
-        interaction: no
-        suggest: no
-        dev: yes
-        progress: no
-        quiet: no
+        php-version: 7.4
+        extensions: mbstring, intl, dom, pdo_mysql
+        ini-values: post_max_size=256M, upload_max_filesize=256M, memory_limit=512M
+        coverage: xdebug
+
+    - name: Install Dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
     - name: Create Database
       run: |
         mkdir -p database
         touch database/database.sqlite
+
+    - name: Set environment variables
+      run: |
+        echo "APP_ENV=testing" >> .env
+        echo "APP_KEY=base64:KD2IT+rBXDNXTe4ao5aF4/2SELqS6xfnc/lvB0caxvI=" >> .env
+        echo "DB_CONNECTION=sqlite" >> .env
+        echo "DB_DATABASE=database/database.sqlite" >> .env
+
+    - name: Run Migrations
+      run: php artisan migrate --force
+
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      uses: php-actions/composer@v4
+      run: vendor/bin/phpunit
+
+    - name: Install PHP_CodeSniffer
+      run: composer require --dev squizlabs/php_codesniffer
+
+    - name: Run PHP_CodeSniffer
+      run: vendor/bin/phpcs --standard=PSR12 app/ tests/
+
+  laravel-build-and-test-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
       with:
-        command: exec phpunit
-        php_version: 7.4
-        composer_version: 2
-        interaction: no
-        suggest: no
-        dev: yes
-        progress: no
-        quiet: no
+        php-version: 7.4
+        extensions: mbstring, intl, dom, pdo_mysql
+        ini-values: post_max_size=256M, upload_max_filesize=256M, memory_limit=512M
+        coverage: xdebug
+
+    - name: Install Dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Create Database
+      run: |
+        mkdir database
+        type NUL > database/database.sqlite
+
+    - name: Set environment variables
+      run: |
+        echo "APP_ENV=testing" >> .env
+        echo "APP_KEY=base64:KD2IT+rBXDNXTe4ao5aF4/2SELqS6xfnc/lvB0caxvI=" >> .env
+        echo "DB_CONNECTION=sqlite" >> .env
+        echo "DB_DATABASE=database/database.sqlite" >> .env
+
+    - name: Run Migrations
+      run: php artisan migrate --force
+
+    - name: Execute tests (Unit and Feature tests) via PHPUnit
+      run: vendor/bin/phpunit
+
+    - name: Install PHP_CodeSniffer
+      run: composer require --dev squizlabs/php_codesniffer
+
+    - name: Run PHP_CodeSniffer
+      run: vendor/bin/phpcs --standard=PSR12 app/ tests/
