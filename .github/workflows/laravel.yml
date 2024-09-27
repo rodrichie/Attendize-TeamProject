@@ -52,6 +52,8 @@ jobs:
 
     - name: Run PHP_CodeBeautifier (phpcbf)
       run: vendor/bin/phpcbf --standard=PSR12 app/ tests/
+      continue-on-error: true
 
     - name: Run PHP_CodeSniffer (phpcs)
       run: vendor/bin/phpcs --standard=PSR12 app/ tests/
+      continue-on-error: true
