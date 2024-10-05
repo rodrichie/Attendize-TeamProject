@@ -67,7 +67,7 @@ jobs:
       - name: Deploy to Staging
         if: success()
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@54.123.45.67 << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@107.20.173.232 << 'EOF'
           cd /home/ec2-user/myapp
           git pull origin main
           docker-compose down
