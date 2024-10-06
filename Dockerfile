@@ -2,7 +2,15 @@
 
 # Base image with nginx, php-fpm and composer built on debian
 FROM wyveo/nginx-php-fpm:php74 as base
-RUN apt-get update && apt-get install -y wait-for-it libxrender1
+
+# Update the GPG keys and install necessary packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    curl && \
+    curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add - && \
+    apt-get update && \
+    apt-get install -y wait-for-it libxrender1
+
 
 # Set up code
 WORKDIR /usr/share/nginx/html
