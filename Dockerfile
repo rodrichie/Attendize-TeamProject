@@ -5,8 +5,11 @@ FROM wyveo/nginx-php-fpm:php74 as base
 
 # RUN apt-get update && apt-get install -y wait-for-it libxrender1
 # Add GPG keys for the nginx and sury PHP repositories to fix signature issues
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62 \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 74A941BA219EC810 \
+RUN install -m 0755 -d /etc/apt/keyrings \
+    && curl -fsSL https://nginx.org/keys/nginx_signing.key | gpg --dearmor -o /etc/apt/keyrings/nginx-archive-keyring.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/debian/ buster nginx" > /etc/apt/sources.list.d/nginx.list \
+    && curl -fsSL https://packages.sury.org/php/apt.gpg | gpg --dearmor -o /etc/apt/keyrings/sury-php.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/sury-php.gpg] https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install -y wait-for-it libxrender1
 
