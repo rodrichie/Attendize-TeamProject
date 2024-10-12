@@ -25,6 +25,13 @@
         "sass-loader": "^8.0.0"
     },
     "scripts": {
+        "development": "mix",
+    "production": "mix --production",
+    "dev": "npm run development",
+        
+        "preinstall": "npm install --global node-gyp",
+
+
         "build-frontend": "grunt",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
