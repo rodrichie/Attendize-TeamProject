@@ -7,12 +7,13 @@ FROM wyveo/nginx-php-fpm:php74 as base
 # Add GPG keys for the nginx and sury PHP repositories to fix signature issues
 RUN apt-get update && apt-get install -y curl gnupg2 \
     && install -m 0755 -d /etc/apt/keyrings \
-    && curl -fsSL https://nginx.org/keys/nginx_signing.key | gpg --dearmor -o /etc/apt/keyrings/nginx-archive-keyring.gpg \
-    && echo "deb [signed-by=/etc/apt/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/debian/ buster nginx" > /etc/apt/sources.list.d/nginx.list \
-    && curl -fsSL https://packages.sury.org/php/apt.gpg | gpg --dearmor -o /etc/apt/keyrings/sury-php.gpg \
-    && echo "deb [signed-by=/etc/apt/keyrings/sury-php.gpg] https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/php.list \
+    && curl -fsSL https://nginx.org/keys/nginx_signing.key | gpg --batch --yes --dearmor -o /etc/apt/keyrings/nginx-archive-keyring.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/mainline/debian/ bullseye nginx" > /etc/apt/sources.list.d/nginx.list \
+    && curl -fsSL https://packages.sury.org/php/apt.gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/sury-php.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/sury-php.gpg] https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install -y wait-for-it libxrender1
+
 # Set up code
 WORKDIR /usr/share/nginx/html
 COPY . .
