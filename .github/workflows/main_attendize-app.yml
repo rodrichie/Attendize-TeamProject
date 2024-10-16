@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - attendize-app
+name: Build and deploy PHP app to Azure Web App - Attendize-app
 
 on:
   push:
@@ -61,15 +61,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_42DCCDF07BD74AF6AF30839018780865 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_79619D766A0B47119E83255ADC8418D0 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_23C4E8D99A734021916EE731205A09F2 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C34260B9BEE943CEB06C7A4DCF272605 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_015422C3F4E84FF7A40CC767E85C2F88 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_82B2535F41E449B6B766B671EC80A4DE }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'attendize-app'
+          app-name: 'Attendize-app'
           slot-name: 'Production'
           package: .
           
